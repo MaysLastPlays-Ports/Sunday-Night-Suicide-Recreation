@@ -1,0 +1,10 @@
+{
+	"idle_anim": "Sadmouse Story",
+	"image": "Menu_Sadmouse",
+	"position": [
+		290,
+		237
+	],
+	"scale": 0.45,
+	"confirm_anim": "M Dad Idle"
+}
