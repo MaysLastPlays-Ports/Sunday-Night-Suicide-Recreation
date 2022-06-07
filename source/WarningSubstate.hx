@@ -11,12 +11,12 @@ import flixel.addons.transition.FlxTransitionableState;
 import flixel.tweens.FlxTween;
 import flixel.util.FlxTimer;
 
-class WarningSubstate extends MusicBeatState
+class WarningSubstate extends MusicBeatSubState
 {
 	public static var leftState:Bool = false;
 
 	var warnText:FlxText;
-	override function new(x:Float,y:Float)
+	public function new(x:Float,y:Float)
 	{
 		super();
 
@@ -50,7 +50,7 @@ class WarningSubstate extends MusicBeatState
 				} else {
 					FlxG.sound.play(Paths.sound('cancelMenu'));
 					PlayState.instance.shaking = false;
-                    ClientPrefs.shaking = false;
+					ClientPrefs.shaking = false;
 					close();
 				}
 			}
