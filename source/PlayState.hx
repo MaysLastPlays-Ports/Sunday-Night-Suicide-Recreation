@@ -1205,7 +1205,7 @@ class PlayState extends MusicBeatState
 		callOnLuas('onCreatePost', []);
 
 		if (daSong == "happy" && daSong == "really-happy" && daSong == "neo-happy" && ClientPrefs.shaking)
-		openSubstate(new WarningSubstate(boyfriend.getScreenPosition().x, boyfriend.getScreenPosition().y));
+		openSubState(new WarningSubstate(boyfriend.getScreenPosition().x, boyfriend.getScreenPosition().y));
 
 		super.create();
 
