@@ -11,7 +11,7 @@ import flixel.addons.transition.FlxTransitionableState;
 import flixel.tweens.FlxTween;
 import flixel.util.FlxTimer;
 
-class WarningSubstate extends MusicBeatSubState
+class WarningSubstate extends MusicBeatSubstate
 {
 	public static var leftState:Bool = false;
 
