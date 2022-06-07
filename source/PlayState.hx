@@ -1204,7 +1204,7 @@ class PlayState extends MusicBeatState
 		Conductor.safeZoneOffset = (ClientPrefs.safeFrames / 60) * 1000;
 		callOnLuas('onCreatePost', []);
 
-		if (daSong == "happy" && daSong == "really-happy" && daSong == "neo-happy")
+		if (daSong == "happy" && daSong == "really-happy" && daSong == "neo-happy" && ClientPrefs.shaking)
 		openSubstate(new WarningSubstate(boyfriend.getScreenPosition().x, boyfriend.getScreenPosition().y));
 
 		super.create();
@@ -2954,7 +2954,7 @@ class PlayState extends MusicBeatState
 					if(Math.isNaN(duration)) duration = 0;
 					if(Math.isNaN(intensity)) intensity = 0;
 
-					if(duration > 0 && intensity != 0 && ClientPrefs.shaking) {
+					if(duration > 0 && intensity != 0 && shaking) {
 						targetsArray[i].shake(intensity, duration);
 					}
 				}
