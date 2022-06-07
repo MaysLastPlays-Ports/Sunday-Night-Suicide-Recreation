@@ -57,3 +57,4 @@ class FlashingState extends MusicBeatState
 		}
 		super.update(elapsed);
 	}
+}
