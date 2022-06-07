@@ -50,12 +50,10 @@ class FlashingState extends MusicBeatState
 				} else {
 					FlxG.sound.play(Paths.sound('cancelMenu'));
 					PlayState.instance.shaking = false;
-                                        ClientPrefs.shaking = false;
+                    ClientPrefs.shaking = false;
 					close();
-					  }
 				}
 			}
 		}
 		super.update(elapsed);
 	}
-}
