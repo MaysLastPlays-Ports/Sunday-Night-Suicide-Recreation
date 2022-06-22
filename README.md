@@ -1,6 +1,5 @@
-# Sunday Night Suicide Android Port
-Official Port By MaysLastPlay 
+# Sunday Night Suicide Recreation
+By MaysLastPlay 
 
-Mod By The_Mayz And His Team
-Zoe.exe Shake Warning
+Mod By The Shipy Sea And SNS Team
 
