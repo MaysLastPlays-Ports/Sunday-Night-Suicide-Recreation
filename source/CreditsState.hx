@@ -87,7 +87,7 @@ class CreditsState extends MusicBeatState
                         [''],
                         ['Sunday Night Suicide Recreation'],
                         ['MaysLastPlay','MaysLastPlay','Main Coder','https://youtube.com/channel/UCx0LxtFR8ROd9sFAq-UxDfw', 'F73838'],
-		        ['Saw (M.A. Jigsaw)','saw','Second Coder','https://www.youtube.com/channel/UC2Sk7vtPzOvbVzdVTWrribQ', 'F73838'],						'https://twitter.com/kawaisprite',		'6475F3']
+		        ['Saw (M.A. Jigsaw)','saw','Second Coder','https://www.youtube.com/channel/UC2Sk7vtPzOvbVzdVTWrribQ', 'F73838'],
 		];
 		
 		for(i in pisspoop){
