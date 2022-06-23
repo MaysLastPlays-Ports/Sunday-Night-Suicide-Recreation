@@ -8,9 +8,9 @@ import flixel.util.FlxColor;
 import flixel.FlxCamera;
 class ShakingWarningSubState extends MusicBeatSubstate
 {
-	public var warningtext:FlxText;
-	public var warningtext2:FlxText;
-	public var cmaera:FlxCamera;
+	public static var warningtext:FlxText;
+	public static var warningtext2:FlxText;
+	public static var cmaera:FlxCamera;
 	public function new(x:Float, y:Float)
     {
         super();
@@ -38,16 +38,22 @@ class ShakingWarningSubState extends MusicBeatSubstate
 		if (FlxG.keys.justPressed.CONTROL)
 		{
 			ClientPrefs.shaking = false;
-			PlayState.instance.isReadyToCountDown = true;
 			close();
 		}
 
 		if (FlxG.keys.justPressed.ENTER)
 		{
-			PlayState.instance.isReadyToCountDown = true;
 			close();
 		}
 
         super.update(elapsed);
     }
 }
+
+                #if android
+                addVirtualPad(NONE, A_B);
+                addPadCamera();
+                #end
+
+		super.create();
+	}
