@@ -1067,6 +1067,27 @@ class PlayState extends MusicBeatState
 		timeTxt.cameras = [camHUD];
 		doof.cameras = [camHUD];
 
+		case 'Happy':
+			if(ClientPrefs.shaking) {
+                var ret:Dynamic = callOnLuas('onPause', []);
+					if(ret != FunkinLua.Function_Stop) {
+					persistentUpdate = false;
+					persistentDraw = true;
+					paused = true;
+
+					if(FlxG.sound.music != null) {
+						FlxG.sound.music.pause();
+						vocals.pause();
+					}
+					ShakingWarningSubState.cmaera = camOther;
+					openSubState(new ShakingWarningSubState(boyfriend.getScreenPosition().x, boyfriend.getScreenPosition().y));
+
+					#if desktop
+					DiscordClient.changePresence(detailsPausedText, SONG.song + " (" + storyDifficultyText + ")", iconP2.getCharacter());
+					#end
+				}
+			}
+
                 #if android
                 addAndroidControls();
                 #end
@@ -1204,9 +1225,6 @@ class PlayState extends MusicBeatState
 		Conductor.safeZoneOffset = (ClientPrefs.safeFrames / 60) * 1000;
 		callOnLuas('onCreatePost', []);
 
-		if (daSong == "happy" && daSong == "really-happy" && daSong == "neo-happy" && ClientPrefs.shaking)
-		openSubState(new WarningSubstate(boyfriend.getScreenPosition().x, boyfriend.getScreenPosition().y));
-
 		super.create();
 
 		Paths.clearUnusedMemory();
@@ -1333,47 +1351,35 @@ class PlayState extends MusicBeatState
 		char.y += char.positionArray[1];
 	}
 
-	public function startVideo(name:String):Void {
+	public function startVideo(name:String)
+	{
 		#if VIDEOS_ALLOWED
-		var foundFile:Bool = false;
-		var fileName:String = #if MODS_ALLOWED Paths.modFolders('videos/' + name + '.' + Paths.VIDEO_EXT); #else ''; #end
+		inCutscene = true;
+
+		var filepath:String = Paths.video(name);
 		#if sys
-		if(FileSystem.exists(fileName)) {
-			foundFile = true;
-		}
+		if(!FileSystem.exists(filepath))
+		#else
+		if(!OpenFlAssets.exists(filepath))
 		#end
-
-		if(!foundFile) {
-			fileName = Paths.video(name);
-			#if sys
-			if(FileSystem.exists(fileName)) {
-			#else
-			if(OpenFlAssets.exists(fileName)) {
-			#end
-				foundFile = true;
-			}
-		}
-
-		if(foundFile) {
-			inCutscene = true;
-			var bg = new FlxSprite(-FlxG.width, -FlxG.height).makeGraphic(FlxG.width * 3, FlxG.height * 3, FlxColor.BLACK);
-			bg.scrollFactor.set();
-			bg.cameras = [camHUD];
-			add(bg);
-
-			(new FlxVideo(fileName)).finishCallback = function() {
-				remove(bg);
-				startAndEnd();
-			}
+		{
+			FlxG.log.warn('Couldnt find video file: ' + name);
+			startAndEnd();
 			return;
 		}
-		else
+
+		FlxG.sound.music.stop();
+		var video:MP4Handler = new MP4Handler();
+		video.playVideo(filepath);
+		
+		video.finishCallback = function()
 		{
-			FlxG.log.warn('Couldnt find video file: ' + fileName);
 			startAndEnd();
 		}
-		#end
+		#else
+		FlxG.log.warn('Platform not supported!');
 		startAndEnd();
+		#end
 	}
 
 	function startAndEnd()
