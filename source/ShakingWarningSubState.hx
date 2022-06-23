@@ -8,9 +8,9 @@ import flixel.util.FlxColor;
 import flixel.FlxCamera;
 class ShakingWarningSubState extends MusicBeatSubstate
 {
-	public static var warningtext:FlxText;
-	public static var warningtext2:FlxText;
-	public static var cmaera:FlxCamera;
+	public var warningtext:FlxText;
+	public var warningtext2:FlxText;
+	public var cmaera:FlxCamera;
 	public function new(x:Float, y:Float)
     {
         super();
