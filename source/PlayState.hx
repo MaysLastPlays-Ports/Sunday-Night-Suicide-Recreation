@@ -55,14 +55,19 @@ import Achievements;
 import StageData;
 import FunkinLua;
 import DialogueBoxPsych;
-#if sys
+#if MODS_ALLOWED
 import sys.FileSystem;
+#end
+
+#if VIDEOS_ALLOWED
+import vlc.MP4Handler;
 #end
 
 using StringTools;
 
 class PlayState extends MusicBeatState
 {
+	public static var isReadyToCountDown:Bool = false;
 	public static var STRUM_X = 42;
 	public static var STRUM_X_MIDDLESCROLL = -278;
 
@@ -1066,28 +1071,7 @@ class PlayState extends MusicBeatState
 		timeBarBG.cameras = [camHUD];
 		timeTxt.cameras = [camHUD];
 		doof.cameras = [camHUD];
-
-		case 'Happy':
-			if(ClientPrefs.shaking) {
-                var ret:Dynamic = callOnLuas('onPause', []);
-					if(ret != FunkinLua.Function_Stop) {
-					persistentUpdate = false;
-					persistentDraw = true;
-					paused = true;
-
-					if(FlxG.sound.music != null) {
-						FlxG.sound.music.pause();
-						vocals.pause();
-					}
-					ShakingWarningSubState.cmaera = camOther;
-					openSubState(new ShakingWarningSubState(boyfriend.getScreenPosition().x, boyfriend.getScreenPosition().y));
-
-					#if desktop
-					DiscordClient.changePresence(detailsPausedText, SONG.song + " (" + storyDifficultyText + ")", iconP2.getCharacter());
-					#end
-				}
-			}
-
+		
                 #if android
                 addAndroidControls();
                 #end
@@ -1131,6 +1115,31 @@ class PlayState extends MusicBeatState
 		{
 			switch (daSong)
 			{
+				case 'Happy' | 'happy':
+			        if(ClientPrefs.shaking) {
+                        var ret:Dynamic = callOnLuas('onPause', []);
+				        if(ret != FunkinLua.Function_Stop) {
+					        persistentUpdate = false;
+					        persistentDraw = true;
+					        paused = true;
+
+					        if(FlxG.sound.music != null) {
+						        FlxG.sound.music.pause();
+						        vocals.pause();
+					        }
+					        ShakingWarningSubState.cmaera = camOther;
+					        openSubState(new ShakingWarningSubState(boyfriend.getScreenPosition().x, boyfriend.getScreenPosition().y));
+				            while (!isReadyToCountDown) {
+					            continue;
+					        }
+					        if (isReadyToCountDown) {
+						        startCountdown();
+						    }
+					        #if desktop
+					        DiscordClient.changePresence(detailsPausedText, SONG.song + " (" + storyDifficultyText + ")", iconP2.getCharacter());
+					        #end
+				        }
+			        }
 				case "monster":
 					var whiteScreen:FlxSprite = new FlxSprite(0, 0).makeGraphic(Std.int(FlxG.width * 2), Std.int(FlxG.height * 2), FlxColor.WHITE);
 					add(whiteScreen);

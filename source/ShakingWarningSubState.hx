@@ -38,11 +38,13 @@ class ShakingWarningSubState extends MusicBeatSubstate
 		if (FlxG.keys.justPressed.CONTROL)
 		{
 			ClientPrefs.shaking = false;
+			PlayState.instance.isReadyToCountDown = true;
 			close();
 		}
 
 		if (FlxG.keys.justPressed.ENTER)
 		{
+			PlayState.instance.isReadyToCountDown = true;
 			close();
 		}
 
