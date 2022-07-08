@@ -49,11 +49,3 @@ class ShakingWarningSubState extends MusicBeatSubstate
         super.update(elapsed);
     }
 }
-
-                #if android
-                addVirtualPad(NONE, A_B);
-                addPadCamera();
-                #end
-
-		super.create();
-	}
