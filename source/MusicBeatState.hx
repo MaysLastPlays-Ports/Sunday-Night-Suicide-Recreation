@@ -33,10 +33,17 @@ class MusicBeatState extends FlxUIState
 		return PlayerSettings.player1.controls;
 
 	#if android
-	public function addVirtualPad(DPad:FlxDPadMode, Action:FlxActionMode) {
-		virtualPad = new FlxVirtualPad(DPad, Action);
-		add(virtualPad);
-		controls.setVirtualPadUI(virtualPad, DPad, Action);
+	var _virtualpad:FlxVirtualPad;
+	var androidc:AndroidControls;
+	var trackedinputsUI:Array<FlxActionInput> = [];
+	var trackedinputsNOTES:Array<FlxActionInput> = [];
+	#end
+	
+	#if android
+	public function addVirtualPad(?DPad:FlxDPadMode, ?Action:FlxActionMode) {
+		_virtualpad = new FlxVirtualPad(DPad, Action, 0.75, ClientPrefs.globalAntialiasing);
+		add(_virtualpad);
+		controls.setVirtualPadUI(_virtualpad, DPad, Action);
 		trackedinputsUI = controls.trackedinputsUI;
 		controls.trackedinputsUI = [];
 	}
@@ -45,22 +52,22 @@ class MusicBeatState extends FlxUIState
 	#if android
 	public function removeVirtualPad() {
 		controls.removeFlxInput(trackedinputsUI);
-		remove(virtualPad);
+		remove(_virtualpad);
 	}
 	#end
 
 	#if android
 	public function addAndroidControls() {
-        androidControls = new AndroidControls();
+        androidc = new AndroidControls();
 
-		switch (androidControls.mode)
+		switch (androidc.mode)
 		{
 			case VIRTUALPAD_RIGHT | VIRTUALPAD_LEFT | VIRTUALPAD_CUSTOM:
-				controls.setVirtualPadNOTES(androidControls.vpad, FULL, NONE);
+				controls.setVirtualPadNOTES(androidc.vpad, FULL, NONE);
 			case DUO:
-				controls.setVirtualPadNOTES(androidControls.vpad, DUO, NONE);
+				controls.setVirtualPadNOTES(androidc.vpad, DUO, NONE);
 			case HITBOX:
-				controls.setHitBox(androidControls.hbox);
+				controls.setHitBox(androidc.hbox);
 			default:
 		}
 
@@ -70,11 +77,11 @@ class MusicBeatState extends FlxUIState
 		var camcontrol = new flixel.FlxCamera();
 		FlxG.cameras.add(camcontrol);
 		camcontrol.bgColor.alpha = 0;
-		androidControls.cameras = [camcontrol];
+		androidc.cameras = [camcontrol];
 
-		androidControls.visible = false;
+		androidc.visible = false;
 
-		add(androidControls);
+		add(androidc);
 	}
 	#end
 
@@ -83,7 +90,7 @@ class MusicBeatState extends FlxUIState
 		var camcontrol = new flixel.FlxCamera();
 		FlxG.cameras.add(camcontrol);
 		camcontrol.bgColor.alpha = 0;
-		virtualPad.cameras = [camcontrol];
+		_virtualpad.cameras = [camcontrol];
 	}
 	#end
 	
@@ -105,6 +112,20 @@ class MusicBeatState extends FlxUIState
 		}
 		FlxTransitionableState.skipNextTransOut = false;
 	}
+	
+	#if (VIDEOS_ALLOWED && windows)
+	override public function onFocus():Void
+	{
+		FlxVideo.onFocus();
+		super.onFocus();
+	}
+	
+	override public function onFocusLost():Void
+	{
+		FlxVideo.onFocusLost();
+		super.onFocusLost();
+	}
+	#end
 
 	override function update(elapsed:Float)
 	{
