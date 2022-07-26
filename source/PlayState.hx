@@ -456,7 +456,7 @@ class PlayState extends MusicBeatState
 					stageCurtains.updateHitbox();
 					add(stageCurtains);
 				}
-case 'street1':
+                        case 'street1':
 	var bg:BGSprite = new BGSprite('street1', -200, -400, .9, .9);
 	bg.setGraphicSize(Std.int(bg.width * 1.3));
 	add(bg);
