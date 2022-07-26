@@ -55,19 +55,14 @@ import Achievements;
 import StageData;
 import FunkinLua;
 import DialogueBoxPsych;
-#if MODS_ALLOWED
+#if sys
 import sys.FileSystem;
-#end
-
-#if VIDEOS_ALLOWED
-import vlc.MP4Handler;
 #end
 
 using StringTools;
 
 class PlayState extends MusicBeatState
 {
-	public static var isReadyToCountDown:Bool = false;
 	public static var STRUM_X = 42;
 	public static var STRUM_X_MIDDLESCROLL = -278;
 
@@ -377,6 +372,12 @@ class PlayState extends MusicBeatState
 					curStage = 'school';
 				case 'thorns':
 					curStage = 'schoolEvil';
+					case 'happy':
+					curStage = 'street2';
+					case 'unhappy':
+					curStage = 'street1';
+					case 'really-happy':
+					curStage = 'street3';
 				default:
 					curStage = 'stage';
 			}
@@ -455,7 +456,19 @@ class PlayState extends MusicBeatState
 					stageCurtains.updateHitbox();
 					add(stageCurtains);
 				}
-
+case 'street1':
+	var bg:BGSprite = new BGSprite('street1', -200, -400, .9, .9);
+	bg.setGraphicSize(Std.int(bg.width * 1.3));
+	add(bg);
+			case 'street2':
+	var bg:BGSprite = new BGSprite('street2', -200, -400, .9, .9);
+		bg.setGraphicSize(Std.int(bg.width * 1.3));
+	add(bg);
+		add(bg);
+			case 'street3':
+	var bg:BGSprite = new BGSprite('street3', -200, -400, .9, .9);
+		bg.setGraphicSize(Std.int(bg.width * 1.3));
+	add(bg);
 			case 'spooky': //Week 2
 				if(!ClientPrefs.lowQuality) {
 					halloweenBG = new BGSprite('halloween_bg', -200, -100, ['halloweem bg0', 'halloweem bg lightning strike']);
@@ -1071,7 +1084,7 @@ class PlayState extends MusicBeatState
 		timeBarBG.cameras = [camHUD];
 		timeTxt.cameras = [camHUD];
 		doof.cameras = [camHUD];
-		
+
                 #if android
                 addAndroidControls();
                 #end
@@ -1115,31 +1128,6 @@ class PlayState extends MusicBeatState
 		{
 			switch (daSong)
 			{
-				case 'Happy' | 'happy':
-			        if(ClientPrefs.shaking) {
-                        var ret:Dynamic = callOnLuas('onPause', []);
-				        if(ret != FunkinLua.Function_Stop) {
-					        persistentUpdate = false;
-					        persistentDraw = true;
-					        paused = true;
-
-					        if(FlxG.sound.music != null) {
-						        FlxG.sound.music.pause();
-						        vocals.pause();
-					        }
-					        ShakingWarningSubState.cmaera = camOther;
-					        openSubState(new ShakingWarningSubState(boyfriend.getScreenPosition().x, boyfriend.getScreenPosition().y));
-				            while (!isReadyToCountDown) {
-					            continue;
-					        }
-					        if (isReadyToCountDown) {
-						        startCountdown();
-						    }
-					        #if desktop
-					        DiscordClient.changePresence(detailsPausedText, SONG.song + " (" + storyDifficultyText + ")", iconP2.getCharacter());
-					        #end
-				        }
-			        }
 				case "monster":
 					var whiteScreen:FlxSprite = new FlxSprite(0, 0).makeGraphic(Std.int(FlxG.width * 2), Std.int(FlxG.height * 2), FlxColor.WHITE);
 					add(whiteScreen);
@@ -1196,6 +1184,14 @@ class PlayState extends MusicBeatState
 				case 'senpai' | 'roses' | 'thorns':
 					if(daSong == 'roses') FlxG.sound.play(Paths.sound('ANGRY'));
 					schoolIntro(doof);
+					case 'unhappy':
+					startVideo('cutscene1');
+					
+					case 'happy':
+					startVideo('cutscene2');
+					
+				case 'really-happy':
+					startVideo('cutscene3');
 
 				default:
 					startCountdown();
@@ -1360,35 +1356,47 @@ class PlayState extends MusicBeatState
 		char.y += char.positionArray[1];
 	}
 
-	public function startVideo(name:String)
-	{
+	public function startVideo(name:String):Void {
 		#if VIDEOS_ALLOWED
-		inCutscene = true;
-
-		var filepath:String = Paths.video(name);
+		var foundFile:Bool = false;
+		var fileName:String = #if MODS_ALLOWED Paths.modFolders('videos/' + name + '.' + Paths.VIDEO_EXT); #else ''; #end
 		#if sys
-		if(!FileSystem.exists(filepath))
-		#else
-		if(!OpenFlAssets.exists(filepath))
+		if(FileSystem.exists(fileName)) {
+			foundFile = true;
+		}
 		#end
-		{
-			FlxG.log.warn('Couldnt find video file: ' + name);
-			startAndEnd();
+
+		if(!foundFile) {
+			fileName = Paths.video(name);
+			#if sys
+			if(FileSystem.exists(fileName)) {
+			#else
+			if(OpenFlAssets.exists(fileName)) {
+			#end
+				foundFile = true;
+			}
+		}
+
+		if(foundFile) {
+			inCutscene = true;
+			var bg = new FlxSprite(-FlxG.width, -FlxG.height).makeGraphic(FlxG.width * 3, FlxG.height * 3, FlxColor.BLACK);
+			bg.scrollFactor.set();
+			bg.cameras = [camHUD];
+			add(bg);
+
+			(new FlxVideo(fileName)).finishCallback = function() {
+				remove(bg);
+				startAndEnd();
+			}
 			return;
 		}
-
-		FlxG.sound.music.stop();
-		var video:MP4Handler = new MP4Handler();
-		video.playVideo(filepath);
-		
-		video.finishCallback = function()
+		else
 		{
+			FlxG.log.warn('Couldnt find video file: ' + fileName);
 			startAndEnd();
 		}
-		#else
-		FlxG.log.warn('Platform not supported!');
-		startAndEnd();
 		#end
+		startAndEnd();
 	}
 
 	function startAndEnd()
