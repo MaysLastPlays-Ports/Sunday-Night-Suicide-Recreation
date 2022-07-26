@@ -2,7 +2,7 @@
 <project>
 	<!-- _________________________ Application Settings _________________________ -->
 
-	<app title="Sunday Night Suicide" file="SundayNightSuicide" packageName="com.mayslastplay.sadmouse" package="com.mayslastplay.sadmouse" main="Main" version="2.0" company="ShadowMario" />
+	<app title="Sunday Night Suicide" file="SundayNightSuicide" packageName="com.theshipysea.sadmouse" package="com.theshipysea.sadmouse" main="Main" version="2.0" company="ShadowMario" />
 
 	<!--Switch Export with Unique ApplicationID and Icon-->
 	<set name="APP_ID" value="0x0100f6c013bbc000" />
@@ -50,6 +50,7 @@
 	<define name="VIDEOS_ALLOWED" if="web || windows || android" unless="32bits"/>
 	<define name="PSYCH_WATERMARKS" /> <!-- DELETE THIS TO REMOVE WATERMARKS/DEV NAMES ON TITLE SCREEN -->
 	<define name="TITLE_SCREEN_EASTER_EGG" /> <!-- DELETE THE if="officialBuild" for enabling this on an unofficial build --> <!-- Edit: i forgot the port is unofficial lmao -->
+	<assets path="assets/preload/images/androidcontrols" if="androidcontrols"/>
 
 	<assets path="assets/preload" rename="assets" exclude="*.ogg" if="web"/>
 	<assets path="assets/preload" rename="assets" exclude="*.mp3"  unless="web"/>
