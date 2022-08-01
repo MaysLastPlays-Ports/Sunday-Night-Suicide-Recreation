@@ -81,7 +81,7 @@ class CreditsState extends MusicBeatState
 		#end
 
 		var pisspoop:Array<Array<String>> = [ //Name - Icon name - Description - Link - BG Color
-		        ['Sunday Night Suicide'],
+		        ['Sunday Night Suicide Team'],
 			['MayMays4Days',		'maymays4days',		'Coder and Composer',					'https://www.tiktok.com/@maymays4days?lang=en',	'0xFF00FF72'],
 			['SonicBoiForLife',			'sonicboiforlife',		'Asset Provider and Cutscene Animator',				'https://www.tiktok.com/@sonicboiforlife?lang=en',		'0xFFFFD900'],
                         [''],
