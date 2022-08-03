@@ -372,12 +372,14 @@ class PlayState extends MusicBeatState
 					curStage = 'school';
 				case 'thorns':
 					curStage = 'schoolEvil';
-					case 'happy':
+		                case 'happy':
 					curStage = 'street2';
-					case 'unhappy':
+				case 'unhappy':
 					curStage = 'street1';
-					case 'really-happy':
+				case 'really-happy':
 					curStage = 'street3';
+                                case 'smile':
+                                        curStage = 'streetalt';
 				default:
 					curStage = 'stage';
 			}
@@ -469,6 +471,10 @@ class PlayState extends MusicBeatState
 	var bg:BGSprite = new BGSprite('street3', -200, -400, .9, .9);
 		bg.setGraphicSize(Std.int(bg.width * 1.3));
 	add(bg);
+                        case 'streetalt':
+        var bg:BGSprite = new BGSprite('streetalt', -500, -900, .9, .9);
+                bg.setGraphicSize(Std.int(bg.width * 1.3));
+        add(bg);
 			case 'spooky': //Week 2
 				if(!ClientPrefs.lowQuality) {
 					halloweenBG = new BGSprite('halloween_bg', -200, -100, ['halloweem bg0', 'halloweem bg lightning strike']);
