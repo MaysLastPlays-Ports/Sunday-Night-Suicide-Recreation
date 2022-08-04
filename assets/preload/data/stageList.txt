@@ -1,8 +1,5 @@
 stage
-spooky
-philly
-limo
-mall
-mallEvil
-school
-schoolEvil
+street1
+street2
+street3
+streetalt
