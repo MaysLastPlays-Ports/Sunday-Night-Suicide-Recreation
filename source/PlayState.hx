@@ -1192,11 +1192,11 @@ class PlayState extends MusicBeatState
 					schoolIntro(doof);
 					case 'unhappy':
 					startVideo('cutscene1');
-					
-					case 'happy':
+	                 
+                        	        case 'happy':
 					startVideo('cutscene2');
-					
-				case 'really-happy':
+
+				        case 'really-happy':
 					startVideo('cutscene3');
 
 				default:
