@@ -35,16 +35,20 @@ class ShakingWarningSubState extends MusicBeatSubstate
 
     override public function update(elapsed:Float):Void
     {
-		if (FlxG.keys.justPressed.CONTROL)
+		if (FlxG.keys.justPressed.CONTROL #if android || _virtualpad.buttonB.justPressed #end)
 		{
 			ClientPrefs.shaking = false;
 			close();
 		}
 
-		if (FlxG.keys.justPressed.ENTER)
+		if (FlxG.keys.justPressed.ENTER #if android || _virtualpad.buttonA.justPressed #end)
 		{
 			close();
 		}
+
+                #if android
+                addVirtualPad(NONE, A_B);
+                #end
 
         super.update(elapsed);
     }
