@@ -33,8 +33,8 @@ jobs:
         run: |
           haxelib setup ~/haxelib
           haxelib install hxcpp > /dev/null
-          haxelib install lime
-          haxelib install openfl
+          haxelib install lime 7.9.0
+          haxelib install openfl 9.1.0
           haxelib --never install flixel
           haxelib run lime setup flixel
           haxelib run lime setup
@@ -51,6 +51,10 @@ jobs:
           haxelib list
       - name: Create Version Tag
         run: echo "${{github.run_id}}" > VERSION
+      - name: Setup Lime
+        run: |
+          haxelib set lime 7.9.0
+          haxelib set openfl 9.1.0
       - name: Compile
         run: haxelib run lime build Project.xml linux --app-version="4.0.0-${{ github.run_id}}"
       - name: Publish Artifact
@@ -73,8 +77,8 @@ jobs:
         run: |
           haxelib setup C:/haxelib
           haxelib install hxcpp > nul
-          haxelib install lime
-          haxelib install openfl
+          haxelib install lime 7.9.0
+          haxelib install openfl 9.1.0
           haxelib --never install flixel
           haxelib run lime setup flixel
           haxelib run lime setup
@@ -92,6 +96,10 @@ jobs:
         shell: cmd
       - name: Create Version Tag
         run: echo "${{github.run_id}}" > VERSION
+      - name: Setup Lime
+        run: |
+          haxelib set lime 7.9.0
+          haxelib set openfl 9.1.0
       - name: Compile
         run: haxelib run lime build windows --app-version="4.0.0-${{ github.run_id}}"
       - name: Publish Artifact
@@ -114,8 +122,8 @@ jobs:
         run: |
           haxelib setup ~/haxelib
           haxelib install hxcpp > /dev/null
-          haxelib install lime
-          haxelib install openfl
+          haxelib install lime 7.9.0
+          haxelib install openfl 9.1.0
           haxelib --never install flixel
           haxelib run lime setup flixel
           haxelib run lime setup
@@ -132,6 +140,10 @@ jobs:
           haxelib list
       - name: Create Version Tag
         run: echo "${{github.run_id}}" > VERSION
+      - name: Setup Lime
+        run: |
+          haxelib set lime 7.9.0
+          haxelib set openfl 9.1.0
       - name: Compile
         run: haxelib run lime build mac --app-version="4.0.0-${{ github.run_id}}"
       - name: Publish Artifact
@@ -169,8 +181,8 @@ jobs:
         run: |
           haxelib setup ~/haxelib
           haxelib install hxcpp > /dev/null
-          haxelib install lime
-          haxelib install openfl
+          haxelib install lime 7.9.0
+          haxelib install openfl 9.1.0
           haxelib --never install flixel
           haxelib run lime setup flixel
           haxelib install flixel-tools
@@ -191,6 +203,8 @@ jobs:
           haxelib run lime config ANDROID_SDK $ANDROID_HOME
           haxelib run lime config ANDROID_NDK_ROOT $ANDROID_NDK_HOME
           haxelib run lime config JAVA_HOME $JAVA_HOME
+          haxelib set lime 7.9.0
+          haxelib set openfl 9.1.0
           haxelib run lime config ANDROID_SETUP true
         env:
           ANDROID_NDK_HOME: ${{ steps.setup-ndk.outputs.ndk-path }}
