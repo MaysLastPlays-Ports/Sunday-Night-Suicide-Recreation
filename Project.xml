@@ -2,7 +2,7 @@
 <project>
 	<!-- _________________________ Application Settings _________________________ -->
 
-	<app title="Sunday Night Suicide" file="SundayNightSuicide" packageName="com.theshipysea.sadmouse" package="com.theshipysea.sadmouse" main="Main" version="2.0" company="ShadowMario" />
+	<app title="Sunday Night Suicide" file="SundayNightSuicide" packageName="com.shadowmario.sadmouse" package="com.shadowmario.sadmouse" main="Main" version="2.0" company="ShadowMario" />
 
 	<!--Switch Export with Unique ApplicationID and Icon-->
 	<set name="APP_ID" value="0x0100f6c013bbc000" />
