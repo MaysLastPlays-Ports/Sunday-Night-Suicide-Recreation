@@ -17,7 +17,7 @@ class ShakingWarningSubState extends MusicBeatSubstate
 		warningtext = new FlxText(0 + 300, 0 + 300, 0, "", 32);
 		#if android
 		warningtext2 = new FlxText(0 + 130, 0 + 350, 0, "Press A to Procceed, Press B to turn shaking off", 32);
-		#else if windows
+		#else
 		warningtext2 = new FlxText(0 + 130, 0 + 350, 0, "Press Enter to Procceed, Press CTRL to turn shaking off", 32);
 				#end
 		if(PlayState.isStoryMode && ClientPrefs.shaking) {
