@@ -318,7 +318,7 @@ if (Paths.formatToSongPath(SONG.song) == 'Happy' && ClientPrefs.shaking) {
                                 FlxG.sound.music.pause();
                                 vocals.pause();
                             }
-                            ShakingWarningSubState.cmaera = camOther;
+                            ShakingWarningSubState.cmaera = [camOther];
                             openSubState(new ShakingWarningSubState(boyfriend.getScreenPosition().x, boyfriend.getScreenPosition().y));
                         #if android
                         androidc.visible = true;
