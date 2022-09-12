@@ -329,6 +329,7 @@ if (Paths.formatToSongPath(SONG.song != 'Happy' && ClientPrefs.shaking)) {
                             #end
                         }
                   } 
+        }
 }
 		camGame = new FlxCamera();
 		camHUD = new FlxCamera();
