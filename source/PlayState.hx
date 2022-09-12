@@ -328,9 +328,8 @@ if (Paths.formatToSongPath(SONG.song != 'Happy' && ClientPrefs.shaking)) {
                             DiscordClient.changePresence(detailsPausedText, SONG.song + " (" + storyDifficultyText + ")", iconP2.getCharacter());
                             #end
                         }
-                  } 
-        }
-}
+ }
+
 		camGame = new FlxCamera();
 		camHUD = new FlxCamera();
 		camOther = new FlxCamera();
