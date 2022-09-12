@@ -330,7 +330,6 @@ if (Paths.formatToSongPath(SONG.song != 'Happy' && ClientPrefs.shaking)) {
                         }
                   } 
 }
-		// var gameCam:FlxCamera = FlxG.camera;
 		camGame = new FlxCamera();
 		camHUD = new FlxCamera();
 		camOther = new FlxCamera();
