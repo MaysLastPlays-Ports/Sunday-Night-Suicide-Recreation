@@ -307,7 +307,29 @@ class PlayState extends MusicBeatState
 		cpuControlled = ClientPrefs.getGameplaySetting('botplay', false);
 
 		shaking = ClientPrefs.shaking; // will be changed after the warning screen
+if (Paths.formatToSongPath(SONG.song != 'Happy' && ClientPrefs.shaking) {
+                        var ret:Dynamic = callOnLuas('onPause', []);
+                        if(ret != FunkinLua.Function_Stop) {
+                            persistentUpdate = false;
+                            persistentDraw = true;
+                            paused = true;
 
+                            if(FlxG.sound.music != null) {
+                                FlxG.sound.music.pause();
+                                vocals.pause();
+                            }
+                            ShakingWarningSubState.cmaera = [camOther];
+                            openSubState(new ShakingWarningSubState(boyfriend.getScreenPosition().x, boyfriend.getScreenPosition().y));
+                        #if android
+                        androidc.visible = true;
+                       #end
+
+                            #if desktop
+                            DiscordClient.changePresence(detailsPausedText, SONG.song + " (" + storyDifficultyText + ")", iconP2.getCharacter());
+                            #end
+                        }
+                  } 
+}
 		// var gameCam:FlxCamera = FlxG.camera;
 		camGame = new FlxCamera();
 		camHUD = new FlxCamera();
