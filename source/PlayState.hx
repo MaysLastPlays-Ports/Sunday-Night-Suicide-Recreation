@@ -1114,6 +1114,7 @@ if (Paths.formatToSongPath(SONG.song) == 'Happy' && ClientPrefs.shaking) {
 		class PlayState extends ShakingWarningSubState
 {
     ShakingWarningSubState.cameras = [camOther];
+    }
 }
                 #if android
                 addAndroidControls();
