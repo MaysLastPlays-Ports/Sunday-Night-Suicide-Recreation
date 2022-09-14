@@ -10,7 +10,7 @@ class ShakingWarningSubState extends MusicBeatSubstate
 {
 	public static var warningtext:FlxText;
 	public static var warningtext2:FlxText;
-	public static var cameras:FlxCamera;
+	public static var cmaera:FlxCamera;
 	public function new(x:Float, y:Float)
     {
         super();
