@@ -1104,10 +1104,6 @@ if (Paths.formatToSongPath(SONG.song) == 'Happy' && ClientPrefs.shaking) {
 		healthBar.cameras = [camHUD];
 		healthBarBG.cameras = [camHUD];
 		iconP1.cameras = [camHUD];
-		class PlayState extends ShakingWarningSubState
-{
-    ShakingWarningSubState.cameras = [camOther]
-}
 		iconP2.cameras = [camHUD];
 		scoreTxt.cameras = [camHUD];
 		botplayTxt.cameras = [camHUD];
@@ -1115,7 +1111,10 @@ if (Paths.formatToSongPath(SONG.song) == 'Happy' && ClientPrefs.shaking) {
 		timeBarBG.cameras = [camHUD];
 		timeTxt.cameras = [camHUD];
 		doof.cameras = [camHUD];
-
+		class PlayState extends ShakingWarningSubState
+{
+    ShakingWarningSubState.cameras = [camOther];
+}
                 #if android
                 addAndroidControls();
                 #end
