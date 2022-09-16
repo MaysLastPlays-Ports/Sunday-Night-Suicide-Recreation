@@ -111,6 +111,7 @@
 	<haxelib name="discord_rpc" if="desktop"/>
 	<!-- <haxelib name="hxcpp-debug-server" if="desktop"/> -->
 	<haxelib name="hxCodec" if="VIDEOS_ALLOWED"/>
+	<haxelib name="hxCodec" if="desktop || android" />
 	<haxelib name="extension-androidtools" if="android"/>
 
 	<config:android permission="android.permission.READ_EXTERNAL_STORAGE" if="android"/>
