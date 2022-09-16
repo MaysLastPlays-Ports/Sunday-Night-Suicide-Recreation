@@ -43,7 +43,7 @@ jobs:
           haxelib install flixel-addons
           haxelib install tjson
           haxelib install hxjsonast
-          haxelib git https://github.com/polybiusproxy/hxCodec
+          haxelib git hxCodec https://github.com/polybiusproxy/hxCodec
           haxelib git linc_luajit https://github.com/AndreiRudenko/linc_luajit
           haxelib install hscript
           haxelib git hscript-ex https://github.com/ianharrigan/hscript-ex
@@ -87,7 +87,7 @@ jobs:
           haxelib install flixel-addons
           haxelib install tjson
           haxelib install hxjsonast
-          haxelib git https://github.com/polybiusproxy/hxCodec
+          haxelib git hxCodec https://github.com/polybiusproxy/hxCodec
           haxelib git linc_luajit https://github.com/AndreiRudenko/linc_luajit
           haxelib install hscript 
           haxelib git hscript-ex https://github.com/ianharrigan/hscript-ex
@@ -133,7 +133,7 @@ jobs:
           haxelib install flixel-addons
           haxelib install tjson
           haxelib install hxjsonast
-           haxelib git https://github.com/polybiusproxy/hxCodec
+           haxelib git hxCodec https://github.com/polybiusproxy/hxCodec
           haxelib git linc_luajit https://github.com/AndreiRudenko/linc_luajit
           haxelib install hscript
           haxelib git hscript-ex https://github.com/ianharrigan/hscript-ex
@@ -193,7 +193,7 @@ jobs:
           haxelib install flixel-addons 
           haxelib git linc_luajit https://github.com/MAJigsaw77/linc_luajit.git
           haxelib git extension-androidtools https://github.com/MaysLastPlay77/extension-androidtools.git
-           haxelib git https://github.com/polybiusproxy/hxCodec.git
+           haxelib git hxCodec https://github.com/polybiusproxy/hxCodec.git
           haxelib list
 
       - name: Create Version Tag
