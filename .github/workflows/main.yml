@@ -43,7 +43,6 @@ jobs:
           haxelib install flixel-addons
           haxelib install tjson
           haxelib install hxjsonast
-          haxelib git hxCodec https://github.com/polybiusproxy/hxCodec
           haxelib git discord_rpc https://github.com/Aidan63/linc_discord-rpc
           haxelib git linc_luajit https://github.com/AndreiRudenko/linc_luajit
           haxelib install hscript
@@ -194,7 +193,7 @@ jobs:
           haxelib install flixel-addons 
           haxelib git linc_luajit https://github.com/MAJigsaw77/linc_luajit.git
           haxelib git extension-androidtools https://github.com/MaysLastPlay77/extension-androidtools.git
-           haxelib git hxCodec https://github.com/polybiusproxy/hxCodec.git
+           haxelib git extension-videoview https://github.com/MAJigsaw77/extension-videoview.git
           haxelib list
 
       - name: Create Version Tag
