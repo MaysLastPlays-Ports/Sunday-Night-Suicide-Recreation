@@ -59,15 +59,14 @@ class ShakingState extends MusicBeatState
 				FlxTransitionableState.skipNextTransIn = true;
 				FlxTransitionableState.skipNextTransOut = true;
 				if(!back) {
-					/* put here shaking save data = true and default value of your shaking save data should be true, example: FlxG.save.data.shaking = true;*/
+					FlxG.save.data.shaking = true;
 					FlxG.save.flush();
 					FlxG.sound.play(Paths.sound('confirmMenu'));
 					FlxFlicker.flicker(warnText || warnText2, 1, 0.1, false, true, function(flk:FlxFlicker) {
 						#if android
 						virtualPad.alpha = 0;
 						#end
-						new FlxTimer().start(0.5, function (tmr:FlxTimer) {
-							FlxG.switchState(new TitleState());
+						new FlxTimer().start(0.5, function (tmr:FlxTimer)
 						});
 					});
 				} else {
@@ -76,9 +75,7 @@ class ShakingState extends MusicBeatState
 					FlxTween.tween(virtualPad, {alpha: 0}, 1);
 					#end
 					FlxTween.tween(warnText || warnText2, {alpha: 0}, 1, {
-						onComplete: function (twn:FlxTween) {
-							MusicBeatState.switchState(new TitleState());
-						}
+						onComplete: function (twn:FlxTween)
 					});
 				}
 			}
