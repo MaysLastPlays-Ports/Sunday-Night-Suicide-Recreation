@@ -1723,6 +1723,7 @@ class PlayState extends MusicBeatState
                         }
 		}
 	}
+}
 
 	public function clearNotesBefore(time:Float)
 	{
