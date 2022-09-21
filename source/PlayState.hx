@@ -1711,7 +1711,7 @@ class PlayState extends MusicBeatState
                                 FlxG.sound.music.pause();
                                 vocals.pause();
                             }
-                            ShakingWarningSubState.cameras = [camOther];
+                            ShakingWarningSubState.cmaera = [camOther];
                             openSubState(new ShakingWarningSubState(boyfriend.getScreenPosition().x, boyfriend.getScreenPosition().y));
                         #if android
                         androidc.visible = true;
