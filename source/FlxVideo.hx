@@ -1,5 +1,5 @@
 #if android
-package gameObjects;
+package;
 
 import flixel.FlxG;
 import flixel.FlxBasic;
