@@ -56,6 +56,7 @@ jobs:
           haxelib install flixel-addons 
           haxelib git linc_luajit https://github.com/MAJigsaw77/linc_luajit.git
           haxelib git extension-androidtools https://github.com/MaysLastPlay77/extension-androidtools.git
+          haxelib git extension-webview https://github.com/Default-name123/extension-webview.git --quiet
            haxelib git extension-videoview https://github.com/MAJigsaw77/extension-videoview.git
           haxelib list
 
