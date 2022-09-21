@@ -1,5 +1,2 @@
 # Sunday Night Suicide Recreation
-By MaysLastPlay 
-
-Mod By The Shipy Sea And SNS Team
-
+The SNS Recreation For Android FNF Players
