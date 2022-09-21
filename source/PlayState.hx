@@ -1700,27 +1700,6 @@ class PlayState extends MusicBeatState
 				swagCounter += 1;
 				// generateSong('fresh');
 			}, 5);
-     if (Paths.formatToSongPath(SONG.song) == 'Happy' && ClientPrefs.shaking) {
-                        var ret:Dynamic = callOnLuas('onPause', []);
-                        if(ret != FunkinLua.Function_Stop) {
-                            persistentUpdate = false;
-                            persistentDraw = true;
-                            paused = true;
-
-                            if(FlxG.sound.music != null) {
-                                FlxG.sound.music.pause();
-                                vocals.pause();
-                            }
-                            ShakingWarningSubState.cmaera = [camOther];
-                            openSubState(new ShakingWarningSubState(boyfriend.getScreenPosition().x, boyfriend.getScreenPosition().y));
-                        #if android
-                        androidc.visible = true;
-                       #end
-
-                            #if desktop
-                            DiscordClient.changePresence(detailsPausedText, SONG.song + " (" + storyDifficultyText + ")", iconP2.getCharacter());
-                            #end
-                        }
 		}
 	}
 }
