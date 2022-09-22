@@ -21,12 +21,9 @@ class ShakingState extends MusicBeatState
 	{
 		super.create();
 
-		var bg:FlxSprite = new FlxSprite().makeGraphic(FlxG.width, FlxG.height, FlxColor.BLACK);
-		add(bg);
-
    if(PlayState.isStoryMode && ClientPrefs.shaking) {
-		warnText = new FlxText(0, 0, FlxG.width, "This song and the next one contain shaking, proceed", 32); //you can edit text here like you want
-    warnText2 = new FlxText(0,0, FlxG.width, "Press A to Proceed, Press B to turn shaking off", 32);
+		warnText = new FlxText(0 + 300, 0 + 300, 0, FlxG.width, "This song and the next one contain shaking, proceed", 32); //you can edit text here like you want
+    warnText2 = new FlxText(0 + 130, 0 + 350, 0, FlxG.width, "Press A to Proceed, Press B to turn shaking off", 32);
 		}
 		warnText.setFormat("VCR OSD Mono", 32, FlxColor.WHITE, CENTER);
 		warnText.screenCenter(Y);
@@ -62,11 +59,11 @@ class ShakingState extends MusicBeatState
 					FlxG.save.data.shaking = true;
 					FlxG.save.flush();
 					FlxG.sound.play(Paths.sound('confirmMenu'));
-					FlxFlicker.flicker(warnText || warnText2, 1, 0.1, false, true, function(flk:FlxFlicker) {
+					FlxFlicker.flicker(warnText && warnText2, 1, 0.1, false, true, function(flk:FlxFlicker) {
 						#if android
 						virtualPad.alpha = 0;
 						#end
-						new FlxTimer().start(0.5, function (tmr:FlxTimer)
+						new FlxTimer().start(0.5, function (tmr:FlxTimer);
 						});
 					});
 				} else {
@@ -74,8 +71,8 @@ class ShakingState extends MusicBeatState
 					#if android
 					FlxTween.tween(virtualPad, {alpha: 0}, 1);
 					#end
-					FlxTween.tween(warnText || warnText2, {alpha: 0}, 1, {
-						onComplete: function (twn:FlxTween)
+					FlxTween.tween(warnText && warnText2, {alpha: 0}, 1, {
+						onComplete: function (twn:FlxTween);
 					});
 				}
 			}
