@@ -58,6 +58,9 @@ import DialogueBoxPsych;
 #if sys
 import sys.FileSystem;
 #end
+#if VIDEOS_ALLOWED
+import VideoHandler;
+#end
 
 using StringTools;
 
