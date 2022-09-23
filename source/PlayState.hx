@@ -1192,9 +1192,9 @@ class PlayState extends MusicBeatState
 					schoolIntro(doof);
 					case 'unhappy':
 					startVideo('cutscene1');
-                        	        case 'happy':
+					case 'happy':
 					startVideo('cutscene2');
-				        case 'really-happy':
+				  case 'really-happy':
 					startVideo('cutscene3');
 
 				default:
@@ -1361,7 +1361,7 @@ class PlayState extends MusicBeatState
 	}
 
 	public function startVideo(name:String):Void {
-		#if (VIDEOS_ALLOWED && !android)
+		#if VIDEOS_ALLOWED
 		var foundFile:Bool = false;
 		var fileName:String = #if MODS_ALLOWED Paths.modFolders('videos/' + name + '.' + Paths.VIDEO_EXT); #else ''; #end
 		#if sys
@@ -1399,25 +1399,6 @@ class PlayState extends MusicBeatState
 			FlxG.log.warn('Couldnt find video file: ' + fileName);
 			startAndEnd();
 		}
-		#elseif android
-		inCutscene = true;
-		var bg = new FlxSprite(-FlxG.width, -FlxG.height).makeGraphic(FlxG.width * 3, FlxG.height * 3, FlxColor.BLACK);
-		bg.scrollFactor.set();
-		bg.cameras = [camHUD];
-		add(bg);
-
-		var video = new FlxVideo(name);                                                     
-    	        video.finishCallback = function() {    
-		        remove(bg);      
-                				
-			if(endingSong) {
-				endSong();
-				if (SONG.song.toLowerCase() == 'really-happy')
-					LoadingState.loadAndSwitchState(new StoryMenuState());
-			} else {
-				startCountdown();
-			}  
-        }
 		#end
 		startAndEnd();
 	}
