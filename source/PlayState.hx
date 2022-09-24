@@ -58,9 +58,6 @@ import DialogueBoxPsych;
 #if sys
 import sys.FileSystem;
 #end
-#if VIDEOS_ALLOWED
-import VideoHandler;
-#end
 
 using StringTools;
 
@@ -1195,9 +1192,9 @@ class PlayState extends MusicBeatState
 					schoolIntro(doof);
 					case 'unhappy':
 					startVideo('cutscene1');
-					case 'happy':
+                        	        case 'happy':
 					startVideo('cutscene2');
-				  case 'really-happy':
+				        case 'really-happy':
 					startVideo('cutscene3');
 
 				default:
@@ -1363,34 +1360,47 @@ class PlayState extends MusicBeatState
 		char.y += char.positionArray[1];
 	}
 
-	public function startVideo(name:String) {
+	public function startVideo(name:String):Void {
 		#if VIDEOS_ALLOWED
-		inCutscene = true;
-
-		var filepath:String = Paths.video(name);
+		var foundFile:Bool = false;
+		var fileName:String = #if MODS_ALLOWED Paths.modFolders('videos/' + name + '.' + Paths.VIDEO_EXT); #else ''; #end
 		#if sys
-		if(!FileSystem.exists(filepath))
-		#else
-		if(!OpenFlAssets.exists(filepath))
+		if(FileSystem.exists(fileName)) {
+			foundFile = true;
+		}
 		#end
-		{
-			FlxG.log.warn('Couldnt find video file: ' + name);
-			startAndEnd();
-			return;
+
+		if(!foundFile) {
+			fileName = Paths.video(name);
+			#if sys
+			if(FileSystem.exists(fileName)) {
+			#else
+			if(OpenFlAssets.exists(fileName)) {
+			#end
+				foundFile = true;
+			}
 		}
 
-		var video:VideoHandler = new VideoHandler();
-		video.playVideo(filepath);
-		video.finishCallback = function()
-		{
-			startAndEnd();
+		if(foundFile) {
+			inCutscene = true;
+			var bg = new FlxSprite(-FlxG.width, -FlxG.height).makeGraphic(FlxG.width * 3, FlxG.height * 3, FlxColor.BLACK);
+			bg.scrollFactor.set();
+			bg.cameras = [camHUD];
+			add(bg);
+
+			(new FlxVideo(fileName)).finishCallback = function() {
+				remove(bg);
+				startAndEnd();
+			}
 			return;
 		}
-		#else
-		FlxG.log.warn('Platform not supported!');
-		startAndEnd();
-		return;
+		else
+		{
+			FlxG.log.warn('Couldnt find video file: ' + fileName);
+			startAndEnd();
+		}
 		#end
+		startAndEnd();
 	}
 
 	function startAndEnd()
@@ -1690,8 +1700,8 @@ class PlayState extends MusicBeatState
 				swagCounter += 1;
 				// generateSong('fresh');
 			}, 5);
+		}
 	}
-}
 
 	public function clearNotesBefore(time:Float)
 	{
