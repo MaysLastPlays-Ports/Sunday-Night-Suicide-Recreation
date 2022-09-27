@@ -11,7 +11,7 @@ import flixel.addons.transition.FlxTransitionableState;
 import flixel.tweens.FlxTween;
 import flixel.util.FlxTimer;
 
-class ShakingState extends MusicBeatState
+class ShakeWarningState extends MusicBeatState
 {
 	public static var leftState:Bool = false;
 
@@ -21,9 +21,9 @@ class ShakingState extends MusicBeatState
 	{
 		super.create();
 
-   if(PlayState.isStoryMode && ClientPrefs.shaking) {
+        if(PlayState.isStoryMode && ClientPrefs.shaking) {
 		warnText = new FlxText(0 + 300, 0 + 300, 0, FlxG.width, "This song and the next one contain shaking, proceed", 32); //you can edit text here like you want
-    warnText2 = new FlxText(0 + 130, 0 + 350, 0, FlxG.width, "Press A to Proceed, Press B to turn shaking off", 32);
+                warnText2 = new FlxText(0 + 130, 0 + 350, 0, FlxG.width, "Press A to Proceed, Press B to turn shaking off", 32);
 		}
 		warnText.setFormat("VCR OSD Mono", 32, FlxColor.WHITE, CENTER);
 		warnText.screenCenter(Y);
