@@ -6,11 +6,11 @@ import flixel.text.FlxText;
 import flixel.input.keyboard.FlxKey;
 import flixel.util.FlxColor;
 import flixel.FlxCamera;
-class ShakingWarningSubState extends MusicBeatSubstate
+class ShakingWarningState extends MusicBeatSubstate
 {
 	public static var warningtext:FlxText;
 	public static var warningtext2:FlxText;
-	public static var cmaera:FlxCamera;
+	public static var cameras:FlxCamera;
 	public function new(x:Float, y:Float)
     {
         super();
