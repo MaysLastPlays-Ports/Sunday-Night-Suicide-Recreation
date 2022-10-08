@@ -9,9 +9,7 @@ class ShakingWarningSubState extends MusicBeatSubstate
 {
 	public static var warningtext:FlxText;
 	public static var warningtext2:FlxText;
-	public function new() // STATE DON'T HAVE FUCKING X AND Y YOU'RE AN IDIOT, THE ONE WHO MADE THIS
-    {
-        super();
+	override public function create() { // STATE DON'T HAVE FUCKING X AND Y YOU'RE AN IDIOT, THE ONE WHO MADE THIS
 		warningtext = new FlxText(0 + 300, 0 + 300, 0, "", 32);
 		warningtext2 = new FlxText(0 + 130, 0 + 350, 0, "Press A to Procceed, Press B to turn shaking off", 32);
 		if(PlayState.isStoryMode && ClientPrefs.shaking) {
@@ -33,7 +31,8 @@ class ShakingWarningSubState extends MusicBeatSubstate
 		addVirtualPad(NONE, A_B);
 		#end
                 // VPAD MUST BE IN CREATE YOU'RE *******
-		}
+                super.create();
+	}
 
     override public function update(elapsed:Float):Void // YOU'RE FUCKING GENIOUS, NAME THE UPDATE FUNCTION WITH CREATE, FUCK YOUR MOTHER BITCH
     {
