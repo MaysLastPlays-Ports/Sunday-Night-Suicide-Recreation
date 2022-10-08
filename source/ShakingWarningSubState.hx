@@ -7,7 +7,7 @@ import flixel.input.keyboard.FlxKey;
 import flixel.tweens.FlxTween;
 import flixel.util.FlxColor;
 import flixel.FlxCamera;
-class ShakingWarningState extends MusicBeatSubstate
+class ShakingWarningSubState extends MusicBeatSubstate
 {
 	public static var warningtext:FlxText;
 	public static var warningtext2:FlxText;
@@ -51,34 +51,7 @@ class ShakingWarningState extends MusicBeatSubstate
                 #if android
                 addVirtualPad(NONE, A_B);
                 #end
-               		if(!leftState) {
-			var back:Bool = controls.BACK;
-			if (controls.ACCEPT || back) {
-				leftState = true;
-				FlxTransitionableState.skipNextTransIn = true;
-				FlxTransitionableState.skipNextTransOut = true;
-				if(!back) {
-					FlxG.save.data.ClientPrefs.shaking = true;
-					FlxG.save.flush();
-					FlxG.sound.play(Paths.sound('confirmMenu'));
-					FlxFlicker.flicker(warningtext && warningtext2, 1, 0.1, false, true, function(flk:FlxFlicker) {
-						#if android
-						virtualPad.alpha = 0;
-						#end
-						new FlxTimer().start(0.5, function (tmr:FlxTimer);
-						});
-					});
-				} else {
-					FlxG.sound.play(Paths.sound('cancelMenu'));
-					#if android
-					FlxTween.tween(virtualPad, {alpha: 0}, 1);
-					#end
-					FlxTween.tween(warningtext && warningtext2, {alpha: 0}, 1, {
-						onComplete: function (twn:FlxTween);
-					});
-				}
-			}
-		}
+ 
 		super.update(elapsed);
   	}
   }
