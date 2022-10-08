@@ -9,7 +9,7 @@ class ShakingWarningSubState extends MusicBeatSubstate
 {
 	public static var warningtext:FlxText;
 	public static var warningtext2:FlxText;
-	public function new(x:Float, y:Float)
+	public function new() // STATE DON'T HAVE FUCKING X AND Y YOU'RE AN IDIOT, THE ONE WHO MADE THIS
     {
         super();
 		warningtext = new FlxText(0 + 300, 0 + 300, 0, "", 32);
@@ -29,6 +29,10 @@ class ShakingWarningSubState extends MusicBeatSubstate
 		warningtext2.updateHitbox();
 		add(warningtext);
 		add(warningtext2);
+                #if android
+		addVirtualPad(NONE, A_B);
+		#end
+                // VPAD MUST BE IN CREATE YOU'RE *******
 		}
 
     override public function create(elapsed:Float):Void
@@ -45,10 +49,6 @@ class ShakingWarningSubState extends MusicBeatSubstate
                         FlxG.save.data.ClientPrefs.shaking = true;
 			close();
 		}
-
-		#if android
-		addVirtualPad(NONE, A_B);
-		#end
 
 		super.update(elapsed);
    }
