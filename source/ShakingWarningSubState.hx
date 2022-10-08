@@ -4,16 +4,12 @@ import flixel.FlxSprite;
 import flixel.FlxG;
 import flixel.text.FlxText;
 import flixel.input.keyboard.FlxKey;
-import flixel.tweens.FlxTween;
 import flixel.util.FlxColor;
-import flixel.FlxCamera;
 class ShakingWarningSubState extends MusicBeatSubstate
 {
 	public static var warningtext:FlxText;
 	public static var warningtext2:FlxText;
-	public static var cameras:FlxCamera;
-	public function new(x:Float, y:Float)
-	public static var leftState:Bool = false;
+	public function new(x:Float, y:Float);
     {
         super();
 		warningtext = new FlxText(0 + 300, 0 + 300, 0, "", 32);
@@ -33,25 +29,27 @@ class ShakingWarningSubState extends MusicBeatSubstate
 		warningtext2.updateHitbox();
 		add(warningtext);
 		add(warningtext2);
-    }
+		}
 
-    override public function update(elapsed:Float):Void
+    override public function create(elapsed:Float):Void
     {
 		if (FlxG.keys.justPressed.CONTROL #if android || _virtualpad.buttonB.justPressed #end)
 		{
 			ClientPrefs.shaking = false;
+                        FlxG.save.data.ClientPrefs.shaking = false;
 			close();
 		}
 
 		if (FlxG.keys.justPressed.ENTER #if android || _virtualpad.buttonA.justPressed #end)
 		{
+                        FlxG.save.data.ClientPrefs.shaking = true;
 			close();
 		}
 
-                #if android
-                addVirtualPad(NONE, A_B);
-                #end
- 
+		#if android
+		addVirtualPad(NONE, A_B);
+		#end
+
 		super.update(elapsed);
-  	}
-  }
+   }
+}
