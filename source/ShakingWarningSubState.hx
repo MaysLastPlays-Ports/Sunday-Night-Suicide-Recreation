@@ -35,7 +35,7 @@ class ShakingWarningSubState extends MusicBeatSubstate
                 // VPAD MUST BE IN CREATE YOU'RE *******
 		}
 
-    override public function update(elapsed:Float):Void // YOU'RE FUCKING GENIOUS, NAME THE CREATE FUNCTION WITH UPDATE, FUCK YOUR MOTHER BITCH
+    override public function update(elapsed:Float):Void // YOU'RE FUCKING GENIOUS, NAME THE UPDATE FUNCTION WITH CREATE, FUCK YOUR MOTHER BITCH
     {
 		if (FlxG.keys.justPressed.CONTROL #if android || _virtualpad.buttonB.justPressed #end)
 		{
