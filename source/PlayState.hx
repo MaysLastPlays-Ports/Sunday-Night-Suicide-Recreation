@@ -3317,7 +3317,8 @@ class PlayState extends MusicBeatState
 							cancelMusicFadeTween();
 							LoadingState.loadAndSwitchState(new PlayState());
 						});
-					} else if (screenShakeWarning) {
+					} 
+					if(screenShakeWarning) {
 						openSubState(new ShakingWarningSubState());
 					} else {
 						cancelMusicFadeTween();
