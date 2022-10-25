@@ -175,6 +175,8 @@ class PlayState extends MusicBeatState
 	public var cpuControlled:Bool = false;
 	public var practiceMode:Bool = false;
 
+	public var shaking:Bool = true;
+
 	public var botplaySine:Float = 0;
 	public var botplayTxt:FlxText;
 
@@ -303,6 +305,8 @@ class PlayState extends MusicBeatState
 		instakillOnMiss = ClientPrefs.getGameplaySetting('instakill', false);
 		practiceMode = ClientPrefs.getGameplaySetting('practice', false);
 		cpuControlled = ClientPrefs.getGameplaySetting('botplay', false);
+
+		shaking = ClientPrefs.shaking; // will be changed after the warning screen
 
 		// var gameCam:FlxCamera = FlxG.camera;
 		camGame = new FlxCamera();
@@ -2977,7 +2981,7 @@ class PlayState extends MusicBeatState
 					if(Math.isNaN(duration)) duration = 0;
 					if(Math.isNaN(intensity)) intensity = 0;
 
-					if(duration > 0 && intensity != 0 && ClientPrefs.shaking) {
+					if(duration > 0 && intensity != 0 && shaking) {
 						targetsArray[i].shake(intensity, duration);
 					}
 				}
