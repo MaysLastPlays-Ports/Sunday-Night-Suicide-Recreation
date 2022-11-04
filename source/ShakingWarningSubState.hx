@@ -7,6 +7,8 @@ import flixel.text.FlxText;
 import flixel.input.keyboard.FlxKey;
 import flixel.util.FlxColor;
 
+using StringTools;
+
 class ShakingWarningSubState extends MusicBeatSubstate
 {
 	public static var warningtext:FlxText;
