@@ -2,9 +2,11 @@ package;
 
 import flixel.FlxSprite;
 import flixel.FlxG;
+import flixel.FlxSubState;
 import flixel.text.FlxText;
 import flixel.input.keyboard.FlxKey;
 import flixel.util.FlxColor;
+
 class ShakingWarningSubState extends MusicBeatSubstate
 {
 	public static var warningtext:FlxText;
